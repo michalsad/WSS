@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    473711,       8225]
-NotebookOptionsPosition[    156122,       2788]
-NotebookOutlinePosition[    468753,       8117]
-CellTagsIndexPosition[    468489,       8106]
+NotebookDataLength[    480348,       8352]
+NotebookOptionsPosition[    162468,       2905]
+NotebookOutlinePosition[    475099,       8234]
+CellTagsIndexPosition[    474835,       8223]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1521,8 +1521,8 @@ Cell[TextData[{
  " The devised function successfully finds individual Mathematica functions \
 which perform operations of types specified above. At this moment it is not \
 able to recognize transformations which change dimensions of arrays other \
-than length (e.g. ArrayReshape, Partition) and cannot propose any complex \
-transformation (transformation performed by more then one Mathematica \
+than their length (e.g. ArrayReshape, Partition) and cannot propose any \
+complex transformation (transformation performed by more then one Mathematica \
 functions applied in a row). The future work will concentrate on adding these \
 functionalities and maybe adding logic rules enhancing function search. "
 }], "TemplateText",
@@ -1535,8 +1535,9 @@ functionalities and maybe adding logic rules enhancing function search. "
    3.708246043262261*^9, 3.708246073483181*^9}, {3.708246111568611*^9, 
    3.708246166818164*^9}, {3.708246211043901*^9, 3.708246341046913*^9}, {
    3.708246379125677*^9, 3.7082464236615343`*^9}, {3.7082465667394648`*^9, 
-   3.7082465685857573`*^9}, {3.708246640204761*^9, 
-   3.708246684586718*^9}},ExpressionUUID->"6c0d4564-fa65-4a7a-a2c3-\
+   3.7082465685857573`*^9}, {3.708246640204761*^9, 3.708246684586718*^9}, {
+   3.708255397253323*^9, 
+   3.708255398466927*^9}},ExpressionUUID->"6c0d4564-fa65-4a7a-a2c3-\
 877ac34578a0"]
 }, Open  ]]
 }, Open  ]],
@@ -2642,11 +2643,66 @@ Cell["Detailed Records of the Project", "TemplateSection",
   3.7080962536504707`*^9}},ExpressionUUID->"ba97f0a3-c165-451d-bf4c-\
 74c0b4a4f36e"],
 
+Cell[CellGroupData[{
+
 Cell["Main Results in Detail", "TemplateSubsection",
  CellChangeTimes->{{3.549542055118816*^9, 3.5495420583168*^9}, {
   3.708095979852994*^9, 3.708095983809194*^9}, {3.70809609386517*^9, 
   3.708096094077529*^9}},ExpressionUUID->"a4e3d008-4eb0-4d8e-bed7-\
 33623658821c"],
+
+Cell["\<\
+The devised function successfully finds, based on an example of input and \
+output provided, individual Mathematica functions which change order of \
+elements in a list (e.g. Sort, Reverse), change number of its elements (e.g. \
+Part, Join, Riffle) or modify its elements according to some numerical \
+transformation applied to all of them (e.g. Plus, Power), without changing \
+its structure (other dimensions than length).The last type of the \
+transformations is searched taking advantage of Mathematica build-in \
+function: FindFormula. 
+
+The special equivalents of selected functions were implemented which return \
+the build-in functions itself (probably with arguments and parameters \
+specified based on the input provided) and the output of these functions. The \
+outputs are then compared with the input given by the user. Some of the \
+functions are less general then others and can thus be inferred based on the \
+output of more generic functions (this is done using Mathematica patterns).
+
+The search is done by probing all of the defined functions. Because the input \
+can be ambiguous, a set of random inputs is generated and the functions are \
+run on this set. One of the input is selected based on how well it divides \
+the space of possible functions and it is issued to the user with question on \
+what would be the output of a desired operation given the input provided. The \
+user enters the output, which is then matched to the outputs given by the \
+functions and only functions with matched output are considered further. This \
+step is repeated until the right set of function is found or until program \
+acknowledges that it cannot find the transformation. The input which best \
+divides the space of possible functions is chosen by the principle of maximal \
+entropy. The entropy for a given input is calculated based on the probability \
+of receiving specific output given this input. The probabilities are \
+calculated upon the outputs given by the functions being checked at a given \
+step in the program execution.
+
+Adding additional functions to the system does not pose a problem.\
+\>", "Text",
+ CellChangeTimes->{
+  3.7082515911823187`*^9, 3.708251622437538*^9, {3.70825202284925*^9, 
+   3.7082520527498207`*^9}, {3.708252206042437*^9, 3.708252211508895*^9}, {
+   3.708252374342886*^9, 3.708252452065806*^9}, {3.708252507385579*^9, 
+   3.7082525361997147`*^9}, {3.7082526341596317`*^9, 3.708252663503416*^9}, {
+   3.708252999056027*^9, 3.708253054709476*^9}, {3.708253098038569*^9, 
+   3.708253106992757*^9}, {3.708253197775971*^9, 3.708253198410705*^9}, {
+   3.708253278275999*^9, 3.70825329429105*^9}, {3.7082533845171127`*^9, 
+   3.708253392742628*^9}, {3.708253442915347*^9, 3.708253505649136*^9}, {
+   3.7082535393667*^9, 3.70825365572608*^9}, {3.7082536992549963`*^9, 
+   3.708253738389023*^9}, {3.708253775464231*^9, 3.708253979540855*^9}, {
+   3.708254024539756*^9, 3.7082541871156197`*^9}, {3.7082542372538958`*^9, 
+   3.708254938985766*^9}, {3.7082549759287777`*^9, 3.708254977136182*^9}, {
+   3.70825502172147*^9, 3.708255126665876*^9}, {3.70825529107769*^9, 
+   3.7082553455835257`*^9}, {3.708257601822373*^9, 
+   3.70825780250351*^9}},ExpressionUUID->"a4cfc013-4542-4849-8a83-\
+2a2b7fff369f"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -2655,23 +2711,18 @@ Cell["Code", "TemplateSubsection",
    3.549542327097245*^9},ExpressionUUID->"c54bc669-1d00-4e87-877b-\
 cfd746ce37fa"],
 
-Cell["Provide one of:", "TemplateComment",
- CellChangeTimes->{{3.70811356171093*^9, 
-  3.7081135645971746`*^9}},ExpressionUUID->"a672a6f1-f8fa-4628-83e3-\
-5438bd707f89"],
-
-Cell[CellGroupData[{
-
-Cell["Link to the GitHub", "Item",
- CellChangeTimes->{{3.7080963065367527`*^9, 
-  3.708096309577277*^9}},ExpressionUUID->"66883a1c-6bbf-428e-84bc-\
-a7c0ba375299"],
-
-Cell["Explicit code", "Item",
- CellChangeTimes->{{3.708096312466115*^9, 
-  3.7080963343962107`*^9}},ExpressionUUID->"7c9362c5-ee46-4875-bc37-\
-652189adc85e"]
-}, Open  ]]
+Cell[TextData[ButtonBox["Construct Programs from Examples (code)",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://github.com/michalsad/WSS/blob/master/\
+constructProgramsFromExamples.nb"], None},
+ ButtonNote->
+  "https://github.com/michalsad/WSS/blob/master/constructProgramsFromExamples.\
+nb"]], "Item",
+ CellChangeTimes->{{3.7080963065367527`*^9, 3.708096309577277*^9}, {
+  3.7082510491771097`*^9, 3.708251053639*^9}, {3.708251229039661*^9, 
+  3.708251285566196*^9}},ExpressionUUID->"66883a1c-6bbf-428e-84bc-\
+a7c0ba375299"]
 }, Open  ]],
 
 Cell["Written Content / Lesson Plans", "TemplateSubsection",
@@ -2679,11 +2730,38 @@ Cell["Written Content / Lesson Plans", "TemplateSubsection",
   3.708096214681534*^9}},ExpressionUUID->"a55786c3-e7a6-4cf3-bb54-\
 b05532239df1"],
 
+Cell[CellGroupData[{
+
 Cell["Conclusions in Detail", "TemplateSubsection",
  CellChangeTimes->{{3.549547456866158*^9, 3.549547459278479*^9}, 
    3.708095987661463*^9, {3.708096097865437*^9, 
    3.70809609806956*^9}},ExpressionUUID->"5a247b12-4033-40a4-960f-\
 65d46bf0f9c2"],
+
+Cell["\<\
+The program is capable of inferring simple list transformations upon an \
+example provided, but is very limited at the moment. However, the search \
+method is very simple and it is easy to add new functions to the system and \
+extend it further. This is a very good base for adding more sophisticated \
+methods of search. 
+
+Constructing programs from examples is a very difficult task, but it is a \
+potentially powerful way to do programming, especially for things like data \
+wrangling. This is an attempt to introduce such a functionality in \
+Mathematica, which shows it might be done to some extent. The devised program \
+can be a useful tool for beginning programmers or for people having problems \
+with learning programming to assist them. It can be even useful for \
+experienced programmers to quickly recall the name or the usage of a function.\
+\>", "Text",
+ CellChangeTimes->{{3.708255894167251*^9, 3.708256077715763*^9}, {
+  3.7082561447597733`*^9, 3.708256154737797*^9}, {3.708256233684044*^9, 
+  3.7082562972187357`*^9}, {3.708256332617394*^9, 3.708256379460907*^9}, {
+  3.708256462601459*^9, 3.708256510378592*^9}, {3.708256550238903*^9, 
+  3.708256553671112*^9}, {3.7082566733319273`*^9, 3.708256707718794*^9}, {
+  3.708256761742242*^9, 3.708257056787965*^9}, {3.708257851359213*^9, 
+  3.7082578522685204`*^9}},ExpressionUUID->"d260795e-1df7-453a-81a6-\
+cfb6a6c02722"]
+}, Open  ]],
 
 Cell["All Visualizations", "TemplateSubsection",
  CellChangeTimes->{{3.5495421749322853`*^9, 3.5495421791841507`*^9}, {
@@ -2697,11 +2775,40 @@ Cell["Data Sources Links/References", "TemplateSubsection",
  CellTags->
   "DataSources",ExpressionUUID->"595aec4a-a293-426a-b50c-4acce4123cb2"],
 
+Cell[CellGroupData[{
+
 Cell["Future Directions", "TemplateSubsection",
  CellChangeTimes->{{3.549548005988791*^9, 3.5495480110025587`*^9}, {
    3.707836737195241*^9, 3.707836742473217*^9}, 3.707836774328553*^9},
  CellTags->
   "FutureDirections",ExpressionUUID->"e5647c6a-cb6b-4235-8887-8cfbb24ef769"],
+
+Cell["\<\
+At this moment the devised function is not able to recognize transformations \
+which change dimensions of arrays other than their length (e.g. ArrayReshape, \
+Partition) and cannot propose any complex transformation (transformation \
+performed by more then one Mathematica functions applied in a row). 
+
+The next step is to add the dimensions-changing functions to the system. \
+After this is done the search for complex transformations can be introduced - \
+using the elements implemented for simple functions and asking additional \
+questions to the user.
+
+The whole system can be of course generalized to account for other than only \
+list operations. The next transformations added would be string \
+transformations.
+
+The procedure could be also enhanced by introducing logic rules into it.\
+\>", "Text",
+ CellChangeTimes->{{3.708255178029571*^9, 3.7082551859188623`*^9}, {
+  3.708255237278797*^9, 3.708255238888247*^9}, {3.7082553794401073`*^9, 
+  3.7082553804587803`*^9}, {3.708255418977845*^9, 3.708255825844577*^9}, {
+  3.708257945325643*^9, 
+  3.7082579461417303`*^9}},ExpressionUUID->"285c3b66-7236-4e7b-83f4-\
+4182e7087699"]
+}, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell["Background Info Links/References", "TemplateSubsection",
  CellChangeTimes->{{3.549542073628705*^9, 3.5495420746677647`*^9}, {
@@ -2710,30 +2817,40 @@ Cell["Background Info Links/References", "TemplateSubsection",
  CellTags->
   "References",ExpressionUUID->"f66f7ca2-dcb9-4c06-9d0a-f2cc48d9fd79"],
 
+Cell["\<\
+https://en.wikipedia.org/wiki/Programming_by_example
+http://reference.wolfram.com/language/ref/FindFormula.html\
+\>", "Text",
+ CellChangeTimes->{{3.708251385488763*^9, 
+  3.708251397655716*^9}},ExpressionUUID->"0b3e8e26-b6a3-4b6c-a107-\
+ba54aae9aa9d"]
+}, Open  ]],
+
 Cell[CellGroupData[{
 
 Cell["Keywords", "TemplateSubsection",
  CellChangeTimes->{{3.549624602331629*^9, 3.549624604729114*^9}},
  CellTags->"Keywords",ExpressionUUID->"0a9d4fd1-d336-4f32-b85d-12e6f9eed8ed"],
 
-Cell["Provide keywords as items", "TemplateComment",
- CellChangeTimes->{{3.70811356171093*^9, 3.7081135645971746`*^9}, {
-  3.7081136127408867`*^9, 
-  3.708113615106327*^9}},ExpressionUUID->"98efa464-d671-4dc2-97d9-\
-29e7a0668393"],
-
 Cell[CellGroupData[{
 
-Cell["< keyword 1 >", "Item",
+Cell["Programming Languages", "Item",
  CellChangeTimes->{{3.708096350583043*^9, 3.7080963544862823`*^9}, {
-  3.708113540381196*^9, 
-  3.708113546129714*^9}},ExpressionUUID->"3b9a0db3-df49-4532-b956-\
+  3.708113540381196*^9, 3.708113546129714*^9}, {3.708251450802066*^9, 
+  3.708251464822568*^9}},ExpressionUUID->"3b9a0db3-df49-4532-b956-\
 8ec2c42dd8bf"],
 
-Cell["< keyword 2 >", "Item",
- CellChangeTimes->{{3.708096350583043*^9, 
-  3.7080963563232718`*^9}},ExpressionUUID->"acccdba7-4cc8-463f-9532-\
-578badae9914"]
+Cell["Software Engineering", "Item",
+ CellChangeTimes->{{3.708096350583043*^9, 3.7080963563232718`*^9}, {
+  3.70825147391263*^9, 
+  3.708251490271646*^9}},ExpressionUUID->"acccdba7-4cc8-463f-9532-\
+578badae9914"],
+
+Cell["Algorithms", "Item",
+ CellChangeTimes->{{3.708096350583043*^9, 3.7080963563232718`*^9}, {
+  3.70825147391263*^9, 
+  3.708251494437169*^9}},ExpressionUUID->"6b3f2f8c-ca22-49cc-9712-\
+af7cbe34cc23"]
 }, Open  ]]
 }, Open  ]],
 
@@ -2752,11 +2869,11 @@ Cell["Date", "TemplateSubsection",
 Cell[TextData[{
  StyleBox["Last Modified: ",
   FontSize->Medium],
- StyleBox["Monday, July 03, 2017",
+ StyleBox["Wednesday, July 05, 2017",
   FontSize->Medium]
 }], "LastModified",
  CellTags->
-  "LastModifiedDate",ExpressionUUID->"42e93caf-49e7-46a8-804c-cbbc765e1d38"],
+  "LastModifiedDate",ExpressionUUID->"df698f40-316d-4078-a753-b6fedd985eee"],
 
 Cell[BoxData[
  ButtonBox[
@@ -8071,47 +8188,47 @@ CellTagsIndex->{
   28, "TemplateTagItem", "ExpressionUUID" -> "1ce5be10-
    fc0e-4dc4-8c8f-3fd9f7bc98b1",
    CellTags->"Author"]},
- "DataSources"->{
-  Cell[152885, 2693, 257, 4, 
-  57, "TemplateSubsection", "ExpressionUUID" -> "90c5541d-d099-4f4e-bc85-
-   f21041ebba3d",
-   CellTags->"DataSources"]},
- "FutureDirections"->{
-  Cell[153145, 2699, 276, 4, 
-  57, "TemplateSubsection", "ExpressionUUID" -> "
-   a7a06247-698d-4fd4-9d58-7a994b2ad255",
-   CellTags->"FutureDirections"]},
- "Keywords"->{
-  Cell[153762, 2714, 182, 2, 
-  57, "TemplateSubsection", "ExpressionUUID" -> "
-   1d14364b-5632-4a62-811d-4cafcffff9eb",
-   CellTags->"Keywords"]},
- "LastModifiedDate"->{
-  Cell[154945, 2751, 229, 7, 
-  28, "LastModified", "ExpressionUUID" -> "a122da2b-08b4-4fe4-
-   b079-9531467b353b",
-   CellTags->"LastModifiedDate"]},
  "Mentor"->{
   Cell[1646, 42, 511, 7, 
   28, "TemplateTagItem", "ExpressionUUID" -> "062ad668-1556-440a-
    bf4f-1f48979f6ee0",
    CellTags->"Mentor"]},
+ "DataSources"->{
+  Cell[157667, 2771, 257, 4, 
+  57, "TemplateSubsection", "ExpressionUUID" -> "595aec4a-a293-426a-
+   b50c-4acce4123cb2",
+   CellTags->"DataSources"]},
+ "FutureDirections"->{
+  Cell[157949, 2779, 276, 4, 
+  57, "TemplateSubsection", "ExpressionUUID" -> "e5647c6a-
+   cb6b-4235-8887-8cfbb24ef769",
+   CellTags->"FutureDirections"]},
  "References"->{
-  Cell[153424, 2705, 313, 5, 
-  57, "TemplateSubsection", "ExpressionUUID" -> "1f35d38b-7a34-433c-
-   ab7b-551d75a3ed1a",
-   CellTags->"References"]}
+  Cell[159410, 2812, 313, 5, 
+  68, "TemplateSubsection", "ExpressionUUID" -> "f66f7ca2-dcb9-4c06-9d0a-
+   f2cc48d9fd79",
+   CellTags->"References"]},
+ "Keywords"->{
+  Cell[160024, 2830, 182, 2, 
+  68, "TemplateSubsection", "ExpressionUUID" -> "0a9d4fd1-d336-4f32-
+   b85d-12e6f9eed8ed",
+   CellTags->"Keywords"]},
+ "LastModifiedDate"->{
+  Cell[161288, 2868, 232, 7, 
+  28, "LastModified", "ExpressionUUID" -> "df698f40-316d-4078-a753-
+   b6fedd985eee",
+   CellTags->"LastModifiedDate"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Author", 467317, 8068},
- {"DataSources", 467475, 8073},
- {"FutureDirections", 467650, 8078},
- {"Keywords", 467822, 8083},
- {"LastModifiedDate", 467994, 8088},
- {"Mentor", 468158, 8093},
- {"References", 468315, 8098}
+ {"Author", 473663, 8185},
+ {"Mentor", 473816, 8190},
+ {"DataSources", 473974, 8195},
+ {"FutureDirections", 474149, 8200},
+ {"References", 474323, 8205},
+ {"Keywords", 474489, 8210},
+ {"LastModifiedDate", 474661, 8215}
  }
 *)
 (*NotebookFileOutline
@@ -8130,101 +8247,111 @@ Cell[2160, 51, 602, 11, 28, "TemplateTagItem", "ExpressionUUID" -> \
 "c631da9b-460e-4577-a230-bfd53947baad"]
 }, Open  ]],
 Cell[2777, 65, 94, 0, 4, "TemplateSubsectionDelimiter", "ExpressionUUID" -> \
-"4099530d-474e-4ea8-a717-f140f30a6507"],
+"db3c9b28-7203-4de6-8fdc-71adf79829c2"],
 Cell[CellGroupData[{
 Cell[2896, 69, 231, 4, 68, "TemplateSection", "ExpressionUUID" -> \
-"b871f7fd-a70e-4ef2-8f22-6af6ed3b4645"],
+"ba8fb57a-50ef-4f25-afde-a880a5da3c9b"],
 Cell[3130, 75, 83743, 1380, 169, "TemplateFigure", "ExpressionUUID" -> \
 "2b88f037-800b-456f-b5e7-4778ea7b9efd"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[86910, 1460, 308, 5, 68, "TemplateSection", "ExpressionUUID" -> \
-"4588eefd-c0a8-4342-ad64-6dd2c3cfa52a"],
+"7f28a721-268a-464e-9bc5-31f61fa28c7d"],
 Cell[87221, 1467, 1107, 17, 49, "TemplateText", "ExpressionUUID" -> \
 "520c7955-8d83-4971-ae37-c12c14c82d99"],
 Cell[88331, 1486, 1966, 29, 125, "TemplateText", "ExpressionUUID" -> \
 "75a84aaf-9d25-47f4-8ec4-d3b9b5b1cdc7"],
-Cell[90300, 1517, 1487, 22, 106, "TemplateText", "ExpressionUUID" -> \
+Cell[90300, 1517, 1543, 23, 106, "TemplateText", "ExpressionUUID" -> \
 "6c0d4564-fa65-4a7a-a2c3-877ac34578a0"]
 }, Open  ]]
 }, Open  ]],
-Cell[91814, 1543, 6920, 145, 63, "TemplateSectionDivider", "ExpressionUUID" \
+Cell[91870, 1544, 6920, 145, 63, "TemplateSectionDivider", "ExpressionUUID" \
 -> "f71ff2db-76fd-4c5d-93da-0f1e45bf66ae"],
 Cell[CellGroupData[{
-Cell[98759, 1692, 507, 16, 68, "TemplateSection", "ExpressionUUID" -> \
-"da9e0b5e-0a1d-499e-b4cc-020a1395d5b8"],
-Cell[99269, 1710, 6418, 111, 117, "Text", "ExpressionUUID" -> \
+Cell[98815, 1693, 507, 16, 68, "TemplateSection", "ExpressionUUID" -> \
+"2d847a34-66d2-4516-b974-ff32b660a5bf"],
+Cell[99325, 1711, 6418, 111, 117, "Text", "ExpressionUUID" -> \
 "df1e8675-866c-471d-812b-b7ea58444979"],
-Cell[105690, 1823, 7462, 127, 120, "Input", "ExpressionUUID" -> \
+Cell[105746, 1824, 7462, 127, 120, "Input", "ExpressionUUID" -> \
 "8b50a5cf-db71-431f-a0aa-c53adf098736"],
-Cell[113155, 1952, 11769, 198, 123, "Input", "ExpressionUUID" -> \
+Cell[113211, 1953, 11769, 198, 123, "Input", "ExpressionUUID" -> \
 "18f95118-d389-4b6b-916f-bbbe8efbb9bc"],
-Cell[124927, 2152, 2738, 50, 47, "Input", "ExpressionUUID" -> \
+Cell[124983, 2153, 2738, 50, 47, "Input", "ExpressionUUID" -> \
 "31c363a1-71b5-435c-a29e-27597b52898c"],
-Cell[127668, 2204, 181, 3, 30, "Text", "ExpressionUUID" -> \
+Cell[127724, 2205, 181, 3, 30, "Text", "ExpressionUUID" -> \
 "38db8c72-a8dd-4cb9-8dd6-8dc3c6232705"],
-Cell[127852, 2209, 11854, 199, 121, "Input", "ExpressionUUID" -> \
+Cell[127908, 2210, 11854, 199, 121, "Input", "ExpressionUUID" -> \
 "2ef00718-7a08-4317-9695-43e47bbb3ac7"],
-Cell[139709, 2410, 3348, 60, 45, "Input", "ExpressionUUID" -> \
+Cell[139765, 2411, 3348, 60, 45, "Input", "ExpressionUUID" -> \
 "95bdd330-ff79-4186-b8c4-709fc6400930"]
 }, Open  ]],
-Cell[143072, 2473, 7856, 162, 63, "TemplateSectionDivider", "ExpressionUUID" \
+Cell[143128, 2474, 7856, 162, 63, "TemplateSectionDivider", "ExpressionUUID" \
 -> "b2c0d3ef-9351-4e96-96c9-55f58e921532"],
 Cell[CellGroupData[{
-Cell[150953, 2639, 186, 3, 68, "TemplateSection", "ExpressionUUID" -> \
-"84ff06a5-4e74-463f-aaec-118802e8382e"],
-Cell[151142, 2644, 270, 4, 68, "TemplateSubsection", "ExpressionUUID" -> \
-"af7b3c37-b426-442b-9af7-78381ef7a9bb"],
+Cell[151009, 2640, 186, 3, 68, "TemplateSection", "ExpressionUUID" -> \
+"ba97f0a3-c165-451d-bf4c-74c0b4a4f36e"],
 Cell[CellGroupData[{
-Cell[151437, 2652, 183, 3, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"97e97f7f-c465-48a6-a407-f913f9a388ce"],
-Cell[151623, 2657, 169, 3, 30, "TemplateComment", "ExpressionUUID" -> \
-"6ed08250-3ca8-4bcd-9355-09ff5a94b4d0"],
-Cell[CellGroupData[{
-Cell[151817, 2664, 162, 3, 30, "Item", "ExpressionUUID" -> \
-"86985a3a-c079-4289-b12d-b40675846443"],
-Cell[151982, 2669, 157, 3, 30, "Item", "ExpressionUUID" -> \
-"f0282e7a-ebac-4091-a21e-d9f6ec5e7abe"]
-}, Open  ]]
+Cell[151220, 2647, 270, 4, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"a4e3d008-4eb0-4d8e-bed7-33623658821c"],
+Cell[151493, 2653, 3250, 50, 429, "Text", "ExpressionUUID" -> \
+"a4cfc013-4542-4849-8a83-2a2b7fff369f"]
 }, Open  ]],
-Cell[152166, 2676, 186, 3, 68, "TemplateSubsection", "ExpressionUUID" -> \
-"8ae48638-f3d9-4d30-9c4f-95fb86f47559"],
-Cell[152355, 2681, 249, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"41a17164-a698-4f97-9bab-505af68bffc1"],
-Cell[152607, 2687, 275, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"387a0006-58ff-498b-bb77-2efc2fc02bad"],
-Cell[152885, 2693, 257, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"90c5541d-d099-4f4e-bc85-f21041ebba3d",
+Cell[CellGroupData[{
+Cell[154780, 2708, 183, 3, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"c54bc669-1d00-4e87-877b-cfd746ce37fa"],
+Cell[154966, 2713, 535, 11, 30, "Item", "ExpressionUUID" -> \
+"66883a1c-6bbf-428e-84bc-a7c0ba375299"]
+}, Open  ]],
+Cell[155516, 2727, 186, 3, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"a55786c3-e7a6-4cf3-bb54-b05532239df1"],
+Cell[CellGroupData[{
+Cell[155727, 2734, 249, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
+"5a247b12-4033-40a4-960f-65d46bf0f9c2"],
+Cell[155979, 2740, 1395, 22, 182, "Text", "ExpressionUUID" -> \
+"d260795e-1df7-453a-81a6-cfb6a6c02722"]
+}, Open  ]],
+Cell[157389, 2765, 275, 4, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"f27ae70e-91c7-4506-8835-21b281190700"],
+Cell[157667, 2771, 257, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
+"595aec4a-a293-426a-b50c-4acce4123cb2",
  CellTags->"DataSources"],
-Cell[153145, 2699, 276, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"a7a06247-698d-4fd4-9d58-7a994b2ad255",
+Cell[CellGroupData[{
+Cell[157949, 2779, 276, 4, 57, "TemplateSubsection", "ExpressionUUID" -> \
+"e5647c6a-cb6b-4235-8887-8cfbb24ef769",
  CellTags->"FutureDirections"],
-Cell[153424, 2705, 313, 5, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"1f35d38b-7a34-433c-ab7b-551d75a3ed1a",
+Cell[158228, 2785, 1145, 22, 239, "Text", "ExpressionUUID" -> \
+"285c3b66-7236-4e7b-83f4-4182e7087699"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[159410, 2812, 313, 5, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"f66f7ca2-dcb9-4c06-9d0a-f2cc48d9fd79",
  CellTags->"References"],
+Cell[159726, 2819, 261, 6, 49, "Text", "ExpressionUUID" -> \
+"0b3e8e26-b6a3-4b6c-a107-ba54aae9aa9d"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[153762, 2714, 182, 2, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"1d14364b-5632-4a62-811d-4cafcffff9eb",
+Cell[160024, 2830, 182, 2, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"0a9d4fd1-d336-4f32-b85d-12e6f9eed8ed",
  CellTags->"Keywords"],
-Cell[153947, 2718, 230, 4, 30, "TemplateComment", "ExpressionUUID" -> \
-"c4e2f359-9ec9-4284-91b0-ac250a2b6279"],
 Cell[CellGroupData[{
-Cell[154202, 2726, 206, 4, 30, "Item", "ExpressionUUID" -> \
-"5f6a585b-e745-4298-9fbc-0858cf708a41"],
-Cell[154411, 2732, 157, 3, 30, "Item", "ExpressionUUID" -> \
-"004841a9-18eb-44be-ab0b-5903b20bdade"]
+Cell[160231, 2836, 260, 4, 30, "Item", "ExpressionUUID" -> \
+"3b9a0db3-df49-4532-b956-8ec2c42dd8bf"],
+Cell[160494, 2842, 212, 4, 30, "Item", "ExpressionUUID" -> \
+"acccdba7-4cc8-463f-9532-578badae9914"],
+Cell[160709, 2848, 202, 4, 30, "Item", "ExpressionUUID" -> \
+"6b3f2f8c-ca22-49cc-9712-af7cbe34cc23"]
 }, Open  ]]
 }, Open  ]],
-Cell[154595, 2739, 160, 3, 68, "TemplateSubsection", "ExpressionUUID" -> \
-"9b466811-5f0d-4f32-8274-c950294cfe46"],
+Cell[160938, 2856, 160, 3, 68, "TemplateSubsection", "ExpressionUUID" -> \
+"7829dc32-1c2b-44a2-9c28-0b354f138b29"],
 Cell[CellGroupData[{
-Cell[154780, 2746, 162, 3, 57, "TemplateSubsection", "ExpressionUUID" -> \
-"228ca816-983c-426f-b95a-7045b02d1fe1"],
-Cell[154945, 2751, 229, 7, 28, "LastModified", "ExpressionUUID" -> \
-"a122da2b-08b4-4fe4-b079-9531467b353b",
+Cell[161123, 2863, 162, 3, 57, "TemplateSubsection", "ExpressionUUID" -> \
+"1cd568fb-8340-49f7-8b1e-208734b6bb99"],
+Cell[161288, 2868, 232, 7, 28, "LastModified", "ExpressionUUID" -> \
+"df698f40-316d-4078-a753-b6fedd985eee",
  CellTags->"LastModifiedDate"],
-Cell[155177, 2760, 917, 24, 43, "Input", "ExpressionUUID" -> \
-"15b85a13-c448-4aa6-86d1-d55f9e51f5ff"]
+Cell[161523, 2877, 917, 24, 43, "Input", "ExpressionUUID" -> \
+"387919cf-8311-4ba3-bacd-ed733929beeb"]
 }, Open  ]]
 }, Open  ]]
 }
